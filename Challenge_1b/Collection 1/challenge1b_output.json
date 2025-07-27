@@ -1,0 +1,105 @@
+{
+    "metadata": {
+        "input_documents": [
+            "South of France - Cities.pdf",
+            "South of France - Cuisine.pdf",
+            "South of France - History.pdf",
+            "South of France - Restaurants and Hotels.pdf",
+            "South of France - Things to Do.pdf",
+            "South of France - Tips and Tricks.pdf",
+            "South of France - Traditions and Culture.pdf"
+        ],
+        "persona": "Travel Planner",
+        "job_to_be_done": "Plan a trip of 4 days for a group of 10 college friends.",
+        "processing_timestamp": "2025-07-27T15:27:46.711928"
+    },
+    "extracted_sections": [
+        {
+            "document": "South of France - Restaurants and Hotels.pdf",
+            "section_title": "Luxurious Hotels",
+            "importance_rank": 1,
+            "page_number": 12
+        },
+        {
+            "document": "South of France - Restaurants and Hotels.pdf",
+            "section_title": "Restaurants",
+            "importance_rank": 2,
+            "page_number": 2
+        },
+        {
+            "document": "South of France - Things to Do.pdf",
+            "section_title": "Educational Experiences",
+            "importance_rank": 3,
+            "page_number": 9
+        },
+        {
+            "document": "South of France - Restaurants and Hotels.pdf",
+            "section_title": "Upscale Hotels",
+            "importance_rank": 4,
+            "page_number": 11
+        },
+        {
+            "document": "South of France - Restaurants and Hotels.pdf",
+            "section_title": "Hotels",
+            "importance_rank": 5,
+            "page_number": 8
+        },
+        {
+            "document": "South of France - Restaurants and Hotels.pdf",
+            "section_title": "Luxurious Restaurants",
+            "importance_rank": 6,
+            "page_number": 6
+        },
+        {
+            "document": "South of France - Tips and Tricks.pdf",
+            "section_title": "Clothing",
+            "importance_rank": 7,
+            "page_number": 4
+        },
+        {
+            "document": "South of France - Cities.pdf",
+            "section_title": "History",
+            "importance_rank": 8,
+            "page_number": 9
+        },
+        {
+            "document": "South of France - Restaurants and Hotels.pdf",
+            "section_title": "Upscale Restaurants",
+            "importance_rank": 9,
+            "page_number": 4
+        },
+        {
+            "document": "South of France - Cuisine.pdf",
+            "section_title": "The South of France is home to many iconic dishes that you must try during your visit:",
+            "importance_rank": 10,
+            "page_number": 3
+        }
+    ],
+    "subsection_analysis": [
+        {
+            "document": "South of France - Cities.pdf",
+            "refined_text": "The South of France, known for its stunning landscapes, Mediterranean coastline, and rich cultural heritage, is home to some of the most beautiful and historically significant cities in the country  This guide provides an in -depth look at the major cities in the South of France, detailing their history, key attractions, cultural highlights, and unique characteristics",
+            "page_number": 1
+        },
+        {
+            "document": "South of France - Cities.pdf",
+            "refined_text": "• Best Time to Visit: The best time to visit the South of France is during the spring (April to June) and fall (September to October) when the weather is pleasant, and the tourist crowds are smaller  • Transportation : The region is well -connected by an extensive network of trains, buses, and flights  Renting a car is also a great option for exploring the countryside and smaller towns  • Language : While French is the oﬃcial language, English is widely spoken in tourist areas",
+            "page_number": 2
+        },
+        {
+            "document": "South of France - Cities.pdf",
+            "refined_text": "• Old Port (Vieux -Port) : The heart of Marseille, the Old Port has been a bustling harbor for over 2,600 year s  Today, it is a lively area filled with cafes, restaurants, and markets  • Basilica of Notre -Dame de la Garde : This iconic basilica, perched on a hill overlooking the city, oﬀers panoramic views of Marseille and the Mediterranean Sea  Built in the 19th ce ntury, it is a symbol of the city's maritime heritage",
+            "page_number": 3
+        },
+        {
+            "document": "South of France - Cities.pdf",
+            "refined_text": "• Boat Trip to the Calanques : Take a boat t rip to the Calanques, a series of stunning limestone cliﬀs and coves along the coast. • Fish Market at the Old Port : Visit the fish market at the Old Port to experience the local seafood culture. • Street Art in Cours Julien : Explore the vibrant street art sc ene in the Cours Julien district.",
+            "page_number": 3
+        },
+        {
+            "document": "South of France - Cities.pdf",
+            "refined_text": "Marseille, founded by Greek sailors around 600 BC, is the oldest city in France. Its strategic location on the Mediterranean coast made it a vital trading port throughout history. The city's rich cultural heritage is reflected in its diverse architecture and vibrant atmosphere. Over the centuries, Marseille h as been influenced by various cultures, including Greek, Roman, and North African, making it a melting pot of traditions and customs.",
+            "page_number": 3
+        }
+    ]
+}

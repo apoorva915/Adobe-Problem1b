@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Analysis System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            color: #4a5568;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #718096;
+        }
+
+        .btn-success {
+            background: #48bb78;
+        }
+
+        .btn-danger {
+            background: #f56565;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .status.success {
+            background: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+        }
+
+        .status.error {
+            background: #fed7d7;
+            color: #742a2a;
+            border: 1px solid #feb2b2;
+        }
+
+        .status.info {
+            background: #bee3f8;
+            color: #2a4365;
+            border: 1px solid #90cdf4;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .results {
+            background: #f7fafc;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .collection-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+
+        .collection-item h4 {
+            color: #4a5568;
+            margin-bottom: 5px;
+        }
+
+        .collection-item p {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📄 PDF Analysis System</h1>
+            <p>Advanced multi-collection PDF analysis with persona-based content extraction</p>
+        </div>
+
+        <div class="grid">
+            <!-- Collections Overview -->
+            <div class="card">
+                <h2>📁 Collections</h2>
+                <p>View and manage available PDF collections</p>
+                <button class="btn" onclick="loadCollections()">Load Collections</button>
+                <div id="collections-list"></div>
+            </div>
+
+            <!-- Analysis Control -->
+            <div class="card">
+                <h2>🔍 Analysis</h2>
+                <div class="form-group">
+                    <label for="collection-select">Select Collection:</label>
+                    <select id="collection-select">
+                        <option value="">Choose a collection...</option>
+                    </select>
+                </div>
+                <button class="btn btn-success" onclick="analyzeCollection()">Analyze Collection</button>
+                <button class="btn btn-secondary" onclick="analyzeAllCollections()">Analyze All</button>
+                <div class="loading" id="analysis-loading">
+                    <div class="spinner"></div>
+                    <p>Processing PDFs...</p>
+                </div>
+            </div>
+
+            <!-- System Status -->
+            <div class="card">
+                <h2>⚙️ System Status</h2>
+                <button class="btn btn-secondary" onclick="checkHealth()">Check Health</button>
+                <div id="health-status"></div>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="card">
+            <h2>📊 Results</h2>
+            <div id="results"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000';
+
+        // Load collections on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCollections();
+            checkHealth();
+        });
+
+        async function loadCollections() {
+            try {
+                const response = await fetch(`${API_BASE}/collections`);
+                const data = await response.json();
+                
+                const collectionsList = document.getElementById('collections-list');
+                const collectionSelect = document.getElementById('collection-select');
+                
+                // Clear previous options
+                collectionSelect.innerHTML = '<option value="">Choose a collection...</option>';
+                
+                if (data.collections && data.collections.length > 0) {
+                    collectionsList.innerHTML = `
+                        <div class="status success">
+                            Found ${data.total} collections
+                        </div>
+                    `;
+                    
+                    data.collections.forEach(collection => {
+                        // Add to select dropdown
+                        const option = document.createElement('option');
+                        option.value = collection.path;
+                        option.textContent = collection.name;
+                        collectionSelect.appendChild(option);
+                        
+                        // Add to collections list
+                        const collectionItem = document.createElement('div');
+                        collectionItem.className = 'collection-item';
+                        collectionItem.innerHTML = `
+                            <h4>${collection.name}</h4>
+                            <p>Path: ${collection.path}</p>
+                            <p>Status: ${collection.has_input && collection.has_pdfs ? '✓ Ready' : '✗ Incomplete'}</p>
+                        `;
+                        collectionsList.appendChild(collectionItem);
+                    });
+                } else {
+                    collectionsList.innerHTML = `
+                        <div class="status error">
+                            No collections found
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('collections-list').innerHTML = `
+                    <div class="status error">
+                        Error loading collections: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        async function analyzeCollection() {
+            const collectionPath = document.getElementById('collection-select').value;
+            if (!collectionPath) {
+                showStatus('Please select a collection first', 'error');
+                return;
+            }
+
+            showLoading(true);
+            try {
+                const response = await fetch(`${API_BASE}/analyze`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        collection_path: collectionPath
+                    })
+                });
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    showStatus(`Analysis completed successfully! Output: ${result.output_path}`, 'success');
+                    showResults(result);
+                } else {
+                    showStatus(`Analysis failed: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showStatus(`Error: ${error.message}`, 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function analyzeAllCollections() {
+            showLoading(true);
+            try {
+                const response = await fetch(`${API_BASE}/collections`);
+                const collectionsData = await response.json();
+                
+                if (!collectionsData.collections || collectionsData.collections.length === 0) {
+                    showStatus('No collections found to analyze', 'error');
+                    return;
+                }
+
+                const collectionPaths = collectionsData.collections.map(c => c.path);
+                
+                const batchResponse = await fetch(`${API_BASE}/analyze-batch`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(collectionPaths)
+                });
+
+                const result = await batchResponse.json();
+                
+                showStatus(`Batch analysis completed! ${result.successful}/${result.total} successful`, 
+                    result.successful === result.total ? 'success' : 'info');
+                showResults(result);
+            } catch (error) {
+                showStatus(`Error: ${error.message}`, 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function checkHealth() {
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                const data = await response.json();
+                
+                const healthStatus = document.getElementById('health-status');
+                healthStatus.innerHTML = `
+                    <div class="status success">
+                        ✓ System is healthy<br>
+                        Service: ${data.service}<br>
+                        Status: ${data.status}
+                    </div>
+                `;
+            } catch (error) {
+                document.getElementById('health-status').innerHTML = `
+                    <div class="status error">
+                        ✗ System is not responding<br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        function showLoading(show) {
+            const loading = document.getElementById('analysis-loading');
+            loading.style.display = show ? 'block' : 'none';
+        }
+
+        function showStatus(message, type) {
+            const results = document.getElementById('results');
+            const statusDiv = document.createElement('div');
+            statusDiv.className = `status ${type}`;
+            statusDiv.textContent = message;
+            results.appendChild(statusDiv);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                statusDiv.remove();
+            }, 5000);
+        }
+
+        function showResults(data) {
+            const results = document.getElementById('results');
+            const resultsDiv = document.createElement('div');
+            resultsDiv.className = 'results';
+            
+            if (data.batch_results) {
+                // Batch results
+                resultsDiv.innerHTML = `
+                    <h3>Batch Analysis Results</h3>
+                    <p><strong>Total:</strong> ${data.total_collections}</p>
+                    <p><strong>Successful:</strong> ${data.successful}</p>
+                    <p><strong>Failed:</strong> ${data.failed}</p>
+                    <h4>Details:</h4>
+                    ${data.batch_results.map(result => `
+                        <div class="collection-item">
+                            <h4>${result.collection}</h4>
+                            <p>Status: ${result.success ? '✓ Success' : '✗ Failed'}</p>
+                            ${result.output_path ? `<p>Output: ${result.output_path}</p>` : ''}
+                            ${result.error ? `<p>Error: ${result.error}</p>` : ''}
+                        </div>
+                    `).join('')}
+                `;
+            } else {
+                // Single collection results
+                resultsDiv.innerHTML = `
+                    <h3>Analysis Results</h3>
+                    <p><strong>Status:</strong> ${data.success ? 'Success' : 'Failed'}</p>
+                    <p><strong>Message:</strong> ${data.message}</p>
+                    ${data.output_path ? `<p><strong>Output:</strong> ${data.output_path}</p>` : ''}
+                    ${data.error ? `<p><strong>Error:</strong> ${data.error}</p>` : ''}
+                `;
+            }
+            
+            results.appendChild(resultsDiv);
+        }
+    </script>
+</body>
+</html> 
