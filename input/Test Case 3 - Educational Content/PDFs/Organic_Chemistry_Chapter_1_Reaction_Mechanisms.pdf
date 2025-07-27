@@ -1,0 +1,73 @@
+Chapter 1: Introduction to Organic Reaction Mechanisms
+
+1.1 Fundamental Concepts
+
+Organic reactions involve the breaking and forming of covalent bonds between carbon atoms and other elements. Understanding reaction mechanisms is crucial for predicting reaction outcomes and designing synthetic pathways.
+
+Key Principles:
+- Electronegativity differences drive bond polarization
+- Electron flow follows the path of least resistance
+- Stability of intermediates determines reaction pathways
+- Energy diagrams illustrate reaction progress
+
+1.2 Types of Reaction Mechanisms
+
+Nucleophilic Substitution (SN):
+- SN1: Unimolecular nucleophilic substitution
+- SN2: Bimolecular nucleophilic substitution
+- Factors affecting mechanism choice: substrate structure, nucleophile strength, solvent effects
+
+Elimination Reactions (E):
+- E1: Unimolecular elimination
+- E2: Bimolecular elimination
+- Competition with substitution reactions
+
+Addition Reactions:
+- Electrophilic addition to alkenes
+- Nucleophilic addition to carbonyl compounds
+- Radical addition mechanisms
+
+1.3 Energy Diagrams and Transition States
+
+Reaction Coordinate Diagrams:
+- Reactants → Transition State → Products
+- Activation energy (Ea) determines reaction rate
+- Gibbs free energy change (ΔG) determines equilibrium
+- Hammond postulate: transition state resembles higher energy species
+
+1.4 Factors Affecting Reaction Rates
+
+Substrate Effects:
+- Steric hindrance
+- Electronic effects (inductive, resonance)
+- Ring strain and angle strain
+
+Solvent Effects:
+- Polar protic vs. polar aprotic solvents
+- Solvation of ions and transition states
+- Dielectric constant effects
+
+Temperature Effects:
+- Arrhenius equation: k = Ae^(-Ea/RT)
+- Temperature dependence of reaction rates
+- Kinetic vs. thermodynamic control
+
+1.5 Reaction Intermediates
+
+Carbocations:
+- Stability order: 3° > 2° > 1° > methyl
+- Hyperconjugation and resonance stabilization
+- Rearrangement reactions
+
+Carbanions:
+- Stability affected by hybridization and substituents
+- Resonance stabilization
+- Basicity and nucleophilicity
+
+Free Radicals:
+- Stability order: 3° > 2° > 1° > methyl
+- Resonance stabilization
+- Radical chain reactions
+
+Summary:
+Understanding reaction mechanisms provides the foundation for predicting and controlling organic reactions. Key factors include substrate structure, reaction conditions, and intermediate stability. 

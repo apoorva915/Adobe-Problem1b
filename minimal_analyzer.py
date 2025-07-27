@@ -352,7 +352,7 @@ def main():
     
     if args.list:
         # List collections
-        challenge_dir = "Challenge_1b"
+        challenge_dir = "input"
         if os.path.exists(challenge_dir):
             print(f"\nAvailable collections in '{challenge_dir}':")
             print("-" * 50)
@@ -375,7 +375,7 @@ def main():
     
     elif args.all:
         # Analyze all collections
-        challenge_dir = "Challenge_1b"
+        challenge_dir = "input"
         if not os.path.exists(challenge_dir):
             print(f"Challenge directory not found: {challenge_dir}")
             return

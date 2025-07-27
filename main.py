@@ -49,7 +49,7 @@ def analyze_single_collection(collection_path: str, verbose: bool = False) -> bo
         return False
 
 
-def analyze_all_collections(base_path: str = "Challenge_1b", verbose: bool = False) -> dict:
+def analyze_all_collections(base_path: str = "input", verbose: bool = False) -> dict:
     """Analyze all collections in the base path."""
     setup_logging(verbose)
     logger.info(f"Starting batch analysis of all collections in: {base_path}")
@@ -115,7 +115,7 @@ def analyze_all_collections(base_path: str = "Challenge_1b", verbose: bool = Fal
     return results
 
 
-def list_collections(base_path: str = "Challenge_1b"):
+def list_collections(base_path: str = "input"):
     """List all available collections."""
     if not os.path.exists(base_path):
         print(f"Base path not found: {base_path}")
@@ -244,8 +244,8 @@ Examples:
     parser.add_argument(
         "--base-path",
         type=str,
-        default="Challenge_1b",
-        help="Base path for collections (default: Challenge_1b)"
+        default="input",
+        help="Base path for collections (default: input)"
     )
     
     args = parser.parse_args()

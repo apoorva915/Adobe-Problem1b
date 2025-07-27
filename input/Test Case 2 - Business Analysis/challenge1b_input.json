@@ -1,0 +1,24 @@
+{
+    "persona": {
+        "role": "Investment Analyst",
+        "description": "Financial analyst specializing in technology sector analysis, with expertise in financial modeling, competitive analysis, and market trend evaluation"
+    },
+    "job_to_be_done": {
+        "task": "Analyze revenue trends, R&D investments, and market positioning strategies",
+        "context": "Evaluating 3 annual reports from competing tech companies (2022-2024) to identify revenue patterns, R&D investment strategies, and competitive positioning in the technology market"
+    },
+    "documents": [
+        {
+            "filename": "Tech_Company_A_Annual_Report_2022.pdf",
+            "description": "Annual report for Tech Company A covering 2022 financial performance and strategic initiatives"
+        },
+        {
+            "filename": "Tech_Company_B_Annual_Report_2023.pdf",
+            "description": "Annual report for Tech Company B covering 2023 financial performance and market positioning"
+        },
+        {
+            "filename": "Tech_Company_C_Annual_Report_2024.pdf",
+            "description": "Annual report for Tech Company C covering 2024 financial performance and R&D investments"
+        }
+    ]
+} 

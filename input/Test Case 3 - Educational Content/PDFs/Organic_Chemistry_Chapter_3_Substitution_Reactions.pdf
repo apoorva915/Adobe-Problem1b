@@ -1,0 +1,125 @@
+Chapter 3: SN1 and SN2 Substitution Reactions and Their Kinetics
+
+3.1 Nucleophilic Substitution Overview
+
+Nucleophilic substitution reactions involve the replacement of a leaving group by a nucleophile. The two main mechanisms are SN1 (unimolecular) and SN2 (bimolecular), which differ in their kinetics and stereochemistry.
+
+General Reaction:
+R-X + Nu⁻ → R-Nu + X⁻
+Where: R = alkyl group, X = leaving group, Nu⁻ = nucleophile
+
+3.2 SN2 Mechanism (Bimolecular Nucleophilic Substitution)
+
+Mechanism:
+- Concerted process: bond breaking and forming occur simultaneously
+- Backside attack by nucleophile
+- Inversion of configuration at carbon center
+- Rate = k[RX][Nu⁻]
+
+Stereochemistry:
+- Complete inversion of configuration
+- Walden inversion
+- Racemization not possible
+
+Substrate Effects:
+- Primary > Secondary > Tertiary
+- Steric hindrance inhibits backside attack
+- Methyl and primary substrates preferred
+
+Nucleophile Effects:
+- Stronger nucleophiles react faster
+- Hard vs. soft nucleophiles
+- Solvent effects on nucleophilicity
+
+Leaving Group Effects:
+- Better leaving groups react faster
+- Leaving group ability: I⁻ > Br⁻ > Cl⁻ > F⁻
+- Resonance stabilization of leaving group
+
+3.3 SN1 Mechanism (Unimolecular Nucleophilic Substitution)
+
+Mechanism:
+- Two-step process: slow ionization, fast nucleophilic attack
+- Carbocation intermediate formation
+- Rate = k[RX] (first-order kinetics)
+
+Stereochemistry:
+- Racemization or partial racemization
+- Carbocation intermediate is planar
+- Nucleophile can attack from either side
+
+Substrate Effects:
+- Tertiary > Secondary > Primary
+- Carbocation stability determines rate
+- Hyperconjugation and resonance stabilization
+
+Solvent Effects:
+- Polar protic solvents favor SN1
+- Solvation of carbocation intermediate
+- Dielectric constant effects
+
+Leaving Group Effects:
+- Same as SN2: better leaving groups react faster
+- Ionization step is rate-determining
+
+3.4 Competition Between SN1 and SN2
+
+Factors Affecting Mechanism Choice:
+
+Substrate Structure:
+- Primary: SN2 favored
+- Secondary: Both mechanisms possible
+- Tertiary: SN1 favored
+
+Nucleophile Strength:
+- Strong nucleophiles favor SN2
+- Weak nucleophiles favor SN1
+- Solvent effects on nucleophilicity
+
+Solvent Effects:
+- Polar protic: favors SN1
+- Polar aprotic: favors SN2
+- Non-polar: limited solubility
+
+Temperature Effects:
+- Higher temperatures favor SN1
+- Entropy effects on transition states
+
+3.5 Kinetic Analysis
+
+SN2 Kinetics:
+- Second-order overall
+- Rate = k[RX][Nu⁻]
+- Linear plot of rate vs. concentration
+
+SN1 Kinetics:
+- First-order overall
+- Rate = k[RX]
+- Independent of nucleophile concentration
+
+3.6 Stereochemical Consequences
+
+SN2 Stereochemistry:
+- Complete inversion (Walden inversion)
+- Stereospecific reaction
+- Predictable product configuration
+
+SN1 Stereochemistry:
+- Racemization or partial racemization
+- Non-stereospecific
+- Product mixture possible
+
+3.7 Practical Applications
+
+Synthetic Utility:
+- SN2: Stereospecific synthesis
+- SN1: Racemic product formation
+- Choice based on stereochemical requirements
+
+Industrial Applications:
+- Pharmaceutical synthesis
+- Fine chemical production
+- Polymer chemistry
+
+Summary:
+Understanding SN1 and SN2 mechanisms is crucial for predicting reaction outcomes and designing synthetic strategies. Key factors include substrate structure, nucleophile strength, and solvent effects. 

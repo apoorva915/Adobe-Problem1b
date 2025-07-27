@@ -1,0 +1,95 @@
+Chapter 2: Fundamental Concepts of Reaction Kinetics
+
+2.1 Introduction to Chemical Kinetics
+
+Chemical kinetics is the study of reaction rates and the factors that influence them. Understanding kinetics is essential for predicting reaction behavior and optimizing reaction conditions.
+
+Rate Laws:
+- Rate = k[A]^m[B]^n
+- k = rate constant
+- m, n = reaction orders
+- Overall order = m + n
+
+2.2 Reaction Order and Molecularity
+
+Zero-Order Reactions:
+- Rate = k (independent of concentration)
+- [A] = [A]₀ - kt
+- Half-life: t₁/₂ = [A]₀/2k
+- Examples: enzyme-catalyzed reactions at saturation
+
+First-Order Reactions:
+- Rate = k[A]
+- ln[A] = ln[A]₀ - kt
+- Half-life: t₁/₂ = 0.693/k
+- Examples: radioactive decay, SN1 reactions
+
+Second-Order Reactions:
+- Rate = k[A]² or Rate = k[A][B]
+- 1/[A] = 1/[A]₀ + kt
+- Half-life: t₁/₂ = 1/k[A]₀
+- Examples: SN2 reactions, dimerization
+
+2.3 Temperature Dependence
+
+Arrhenius Equation:
+- k = Ae^(-Ea/RT)
+- ln k = ln A - Ea/RT
+- Ea = activation energy
+- A = pre-exponential factor
+
+Activation Energy:
+- Minimum energy required for reaction
+- Determines temperature sensitivity
+- Can be calculated from rate data at different temperatures
+
+2.4 Reaction Mechanisms and Rate-Determining Steps
+
+Elementary Reactions:
+- Single-step reactions
+- Molecularity equals reaction order
+- Rate law directly reflects stoichiometry
+
+Complex Reactions:
+- Multiple elementary steps
+- Rate-determining step controls overall rate
+- Steady-state approximation for intermediates
+
+2.5 Catalysis
+
+Homogeneous Catalysis:
+- Catalyst in same phase as reactants
+- Enzymes, acid-base catalysis
+- Lower activation energy pathway
+
+Heterogeneous Catalysis:
+- Catalyst in different phase
+- Surface reactions, metal catalysts
+- Adsorption and desorption steps
+
+2.6 Kinetic vs. Thermodynamic Control
+
+Kinetic Control:
+- Product distribution determined by rates
+- Lower activation energy pathway favored
+- Temperature and catalyst effects
+
+Thermodynamic Control:
+- Product distribution determined by equilibrium
+- More stable product favored
+- Temperature effects on equilibrium
+
+2.7 Experimental Methods
+
+Initial Rate Method:
+- Measure rates at different concentrations
+- Determine reaction orders
+- Calculate rate constants
+
+Integrated Rate Laws:
+- Plot concentration vs. time
+- Linear plots indicate reaction order
+- Slope gives rate constant
+
+Summary:
+Kinetic analysis provides insights into reaction mechanisms and allows prediction of reaction behavior under different conditions. Key concepts include rate laws, temperature dependence, and the distinction between kinetic and thermodynamic control. 

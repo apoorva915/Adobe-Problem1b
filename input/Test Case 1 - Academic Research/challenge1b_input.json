@@ -1,0 +1,28 @@
+{
+    "persona": {
+        "role": "PhD Researcher in Computational Biology",
+        "description": "Advanced researcher specializing in computational methods for drug discovery, with expertise in machine learning, bioinformatics, and molecular modeling"
+    },
+    "job_to_be_done": {
+        "task": "Prepare a comprehensive literature review focusing on methodologies, datasets, and performance benchmarks",
+        "context": "Analyzing 4 research papers on Graph Neural Networks for Drug Discovery to identify key methodologies, evaluate datasets used, and compare performance benchmarks across different approaches"
+    },
+    "documents": [
+        {
+            "filename": "GNN_Drug_Discovery_Methodology_2023.pdf",
+            "description": "Research paper on novel GNN architectures for molecular property prediction"
+        },
+        {
+            "filename": "Drug_Discovery_Datasets_Comparative_Study.pdf",
+            "description": "Comprehensive analysis of datasets used in drug discovery research"
+        },
+        {
+            "filename": "GNN_Performance_Benchmarks_2024.pdf",
+            "description": "Performance comparison of different GNN models on drug discovery tasks"
+        },
+        {
+            "filename": "Molecular_Representation_GNN_Review.pdf",
+            "description": "Review of molecular representation methods in graph neural networks"
+        }
+    ]
+} 

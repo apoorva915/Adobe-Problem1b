@@ -34,7 +34,7 @@ Available collections in 'Challenge_1b':
 
 ### 2. Analyze a Specific Collection
 ```bash
-python minimal_analyzer.py --collection "Challenge_1b/Collection 1"
+python minimal_analyzer.py --collection "input/Collection 1"
 ```
 
 **Expected Output:**
@@ -132,17 +132,23 @@ Edit `minimal_analyzer.py` to adjust:
 ### Customize Output Directory
 ```bash
 # Use custom output directory
-python minimal_analyzer.py --collection "Challenge_1b/Collection 1" --output-dir "my_results"
+python minimal_analyzer.py --collection "input/Collection 1" --output-dir "my_results"
 
 # Use default output directory (output/)
-python minimal_analyzer.py --collection "Challenge_1b/Collection 1"
+python minimal_analyzer.py --collection "input/Collection 1"
 ```
 
 ### Add New Collections
-1. Create a new directory in `Challenge_1b/`
+**Option 1: Web Interface (Recommended)**
+1. Go to `http://localhost:8000`
+2. Use the "Upload PDFs" section to create collections and upload files
+3. The system will automatically create the proper directory structure
+
+**Option 2: Manual**
+1. Create a new directory in `input/`
 2. Add `challenge1b_input.json` with proper structure
 3. Create `PDFs/` subdirectory with PDF files
-4. Run: `python minimal_analyzer.py --collection "path/to/new/collection"`
+4. Run: `python minimal_analyzer.py --collection "input/your_collection_name"`
 
 ### Web Interface (Optional)
 If you want to use the web interface (requires additional dependencies):
@@ -184,13 +190,20 @@ Problem-1b/
 ├── minimal_analyzer.py          # Main analysis script (USE THIS)
 ├── simple_analyzer.py           # Alternative version
 ├── test_simple.py              # Test script
-├── Challenge_1b/               # Sample data (unchanged)
+├── Challenge_1b/               # Original sample data (unchanged)
 │   ├── Collection 1/
 │   │   ├── challenge1b_input.json
 │   │   └── PDFs/
 │   ├── Collection 2/
 │   └── Collection 3/
-├── output/                     # Generated results (separate from sample data)
+├── input/                      # Working input directory (copy of sample data + your uploads)
+│   ├── Collection 1/
+│   │   ├── challenge1b_input.json
+│   │   └── PDFs/
+│   ├── Collection 2/
+│   ├── Collection 3/
+│   └── [Your uploaded collections]/
+├── output/                     # Generated results (separate from input data)
 │   ├── Collection 1/
 │   │   └── challenge1b_output.json
 │   ├── Collection 2/

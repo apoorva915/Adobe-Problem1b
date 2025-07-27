@@ -1,0 +1,32 @@
+{
+    "persona": {
+        "role": "Undergraduate Chemistry Student",
+        "description": "Third-year chemistry student preparing for organic chemistry exams, with focus on understanding reaction mechanisms and kinetics"
+    },
+    "job_to_be_done": {
+        "task": "Identify key concepts and mechanisms for exam preparation on reaction kinetics",
+        "context": "Studying 5 chapters from organic chemistry textbooks to extract key concepts, reaction mechanisms, and kinetic principles for comprehensive exam preparation"
+    },
+    "documents": [
+        {
+            "filename": "Organic_Chemistry_Chapter_1_Reaction_Mechanisms.pdf",
+            "description": "Chapter 1: Introduction to organic reaction mechanisms and basic principles"
+        },
+        {
+            "filename": "Organic_Chemistry_Chapter_2_Kinetics_Fundamentals.pdf",
+            "description": "Chapter 2: Fundamental concepts of reaction kinetics and rate laws"
+        },
+        {
+            "filename": "Organic_Chemistry_Chapter_3_Substitution_Reactions.pdf",
+            "description": "Chapter 3: SN1 and SN2 substitution reactions and their kinetics"
+        },
+        {
+            "filename": "Organic_Chemistry_Chapter_4_Elimination_Reactions.pdf",
+            "description": "Chapter 4: E1 and E2 elimination reactions and mechanisms"
+        },
+        {
+            "filename": "Organic_Chemistry_Chapter_5_Advanced_Kinetics.pdf",
+            "description": "Chapter 5: Advanced kinetic concepts and reaction coordinate diagrams"
+        }
+    ]
+} 

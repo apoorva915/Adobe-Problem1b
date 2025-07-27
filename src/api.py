@@ -177,7 +177,7 @@ async def analyze_batch_collections(collections: list[str]):
 
 
 @app.get("/collections")
-async def list_collections(base_path: str = "Challenge_1b"):
+async def list_collections(base_path: str = "input"):
     """List available collections."""
     try:
         collections = []
@@ -185,22 +185,38 @@ async def list_collections(base_path: str = "Challenge_1b"):
         if os.path.exists(base_path):
             for item in os.listdir(base_path):
                 item_path = os.path.join(base_path, item)
-                if os.path.isdir(item_path) and item.startswith("Collection"):
+                if os.path.isdir(item_path):
                     # Check if it has required structure
                     input_file = os.path.join(item_path, "challenge1b_input.json")
                     pdfs_dir = os.path.join(item_path, "PDFs")
                     
-                    if os.path.exists(input_file) and os.path.exists(pdfs_dir):
+                    # Count PDF files
+                    pdf_count = 0
+                    if os.path.exists(pdfs_dir):
+                        pdf_count = len([f for f in os.listdir(pdfs_dir) if f.endswith('.pdf')])
+                    
+                    # Check if collection has any content
+                    has_input = os.path.exists(input_file)
+                    has_pdfs = pdf_count > 0
+                    
+                    if has_input or has_pdfs:  # Include collections with either input or PDFs
                         collections.append({
                             "name": item,
                             "path": item_path,
-                            "has_input": True,
-                            "has_pdfs": True
+                            "has_input": has_input,
+                            "has_pdfs": has_pdfs,
+                            "pdf_count": pdf_count,
+                            "is_ready": has_input and has_pdfs
                         })
+        
+        # Sort collections: ready ones first, then by name
+        collections.sort(key=lambda x: (not x["is_ready"], x["name"]))
         
         return {
             "collections": collections,
-            "total": len(collections)
+            "total": len(collections),
+            "ready": len([c for c in collections if c["is_ready"]]),
+            "incomplete": len([c for c in collections if not c["is_ready"]])
         }
         
     except Exception as e:
@@ -209,7 +225,7 @@ async def list_collections(base_path: str = "Challenge_1b"):
 
 
 @app.get("/collection/{collection_name}")
-async def get_collection_info(collection_name: str, base_path: str = "Challenge_1b"):
+async def get_collection_info(collection_name: str, base_path: str = "input"):
     """Get detailed information about a specific collection."""
     try:
         collection_path = os.path.join(base_path, collection_name)
@@ -219,25 +235,32 @@ async def get_collection_info(collection_name: str, base_path: str = "Challenge_
         
         # Load input data
         input_file = os.path.join(collection_path, "challenge1b_input.json")
+        input_data = None
         if os.path.exists(input_file):
             with open(input_file, 'r') as f:
-                import json
                 input_data = json.load(f)
-        else:
-            input_data = None
         
-        # Count PDF files
+        # Count PDF files and get list
         pdfs_dir = os.path.join(collection_path, "PDFs")
+        pdf_files = []
         pdf_count = 0
         if os.path.exists(pdfs_dir):
-            pdf_count = len([f for f in os.listdir(pdfs_dir) if f.endswith('.pdf')])
+            pdf_files = [f for f in os.listdir(pdfs_dir) if f.endswith('.pdf')]
+            pdf_count = len(pdf_files)
+        
+        # Check if output exists
+        output_file = os.path.join("output", collection_name, "challenge1b_output.json")
+        has_output = os.path.exists(output_file)
         
         return {
             "name": collection_name,
             "path": collection_path,
             "input_data": input_data,
+            "pdf_files": pdf_files,
             "pdf_count": pdf_count,
-            "has_output": os.path.exists(os.path.join(collection_path, "challenge1b_output.json"))
+            "has_output": has_output,
+            "output_path": output_file if has_output else None,
+            "is_ready": input_data is not None and pdf_count > 0
         }
         
     except Exception as e:
@@ -245,25 +268,125 @@ async def get_collection_info(collection_name: str, base_path: str = "Challenge_
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.post("/upload-pdf")
+async def upload_pdf(file: UploadFile = File(...), collection_name: str = "New Collection"):
+    """Upload a PDF file to a collection."""
+    try:
+        # Create collection directory if it doesn't exist
+        collection_path = os.path.join("input", collection_name)
+        pdfs_dir = os.path.join(collection_path, "PDFs")
+        
+        os.makedirs(pdfs_dir, exist_ok=True)
+        
+        # Save the uploaded file
+        file_path = os.path.join(pdfs_dir, file.filename)
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+        
+        # Create or update input file if it doesn't exist
+        input_file = os.path.join(collection_path, "challenge1b_input.json")
+        if not os.path.exists(input_file):
+            # Get list of all PDF files in the collection
+            pdf_files = []
+            if os.path.exists(pdfs_dir):
+                pdf_files = [f for f in os.listdir(pdfs_dir) if f.endswith('.pdf')]
+            
+            # Create sample input file
+            sample_input = {
+                "persona": {
+                    "role": "Document Analyst",
+                    "description": "Professional who analyzes documents for insights"
+                },
+                "job_to_be_done": {
+                    "task": f"Analyze documents in {collection_name}",
+                    "context": f"Collection of {len(pdf_files)} PDF documents"
+                },
+                "documents": [{"filename": pdf} for pdf in pdf_files]
+            }
+            
+            with open(input_file, 'w') as f:
+                json.dump(sample_input, f, indent=4)
+        
+        return {
+            "success": True,
+            "message": f"PDF uploaded successfully to {collection_name}",
+            "file_path": file_path,
+            "collection": collection_name,
+            "input_created": not os.path.exists(input_file)
+        }
+        
+    except Exception as e:
+        logger.error(f"Failed to upload PDF: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/create-collection")
+async def create_collection(collection_name: str, description: str = ""):
+    """Create a new collection directory."""
+    try:
+        collection_path = os.path.join("input", collection_name)
+        
+        if os.path.exists(collection_path):
+            raise HTTPException(status_code=400, detail="Collection already exists")
+        
+        # Create collection structure
+        os.makedirs(collection_path, exist_ok=True)
+        os.makedirs(os.path.join(collection_path, "PDFs"), exist_ok=True)
+        
+        # Create sample input file
+        sample_input = {
+            "persona": {
+                "role": "Document Analyst",
+                "description": "Professional who analyzes documents for insights"
+            },
+            "job_to_be_done": {
+                "task": f"Analyze documents in {collection_name}",
+                "context": description
+            },
+            "documents": []
+        }
+        
+        input_file = os.path.join(collection_path, "challenge1b_input.json")
+        with open(input_file, 'w') as f:
+            json.dump(sample_input, f, indent=4)
+        
+        return {
+            "success": True,
+            "message": f"Collection '{collection_name}' created successfully",
+            "collection_path": collection_path
+        }
+        
+    except Exception as e:
+        logger.error(f"Failed to create collection: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/results/{collection_name}")
 async def get_analysis_results(collection_name: str, base_path: str = "output"):
     """Get analysis results for a specific collection."""
     try:
+        # Clean collection name (remove path prefixes)
+        clean_name = collection_name
+        if '\\' in collection_name:
+            clean_name = collection_name.split('\\')[-1]
+        elif '/' in collection_name:
+            clean_name = collection_name.split('/')[-1]
+        
         # Check in output directory first
-        output_file = os.path.join(base_path, collection_name, "challenge1b_output.json")
+        output_file = os.path.join(base_path, clean_name, "challenge1b_output.json")
         
         if not os.path.exists(output_file):
             # Fallback to collection directory
-            output_file = os.path.join("Challenge_1b", collection_name, "challenge1b_output.json")
+            output_file = os.path.join("Challenge_1b", clean_name, "challenge1b_output.json")
         
         if not os.path.exists(output_file):
-            raise HTTPException(status_code=404, detail="Analysis results not found")
+            raise HTTPException(status_code=404, detail=f"Analysis results not found for {clean_name}")
         
         with open(output_file, 'r', encoding='utf-8') as f:
             results = json.load(f)
         
         return {
-            "collection": collection_name,
+            "collection": clean_name,
             "results": results,
             "output_file": output_file
         }

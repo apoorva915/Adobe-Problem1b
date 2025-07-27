@@ -1,0 +1,144 @@
+Chapter 4: E1 and E2 Elimination Reactions and Mechanisms
+
+4.1 Elimination Reactions Overview
+
+Elimination reactions involve the removal of two substituents from adjacent carbon atoms, forming a double bond. The two main mechanisms are E1 (unimolecular) and E2 (bimolecular), which compete with substitution reactions.
+
+General Reaction:
+R-CH₂-CH₂-X → R-CH=CH₂ + HX
+Where: X = leaving group, H = hydrogen atom
+
+4.2 E2 Mechanism (Bimolecular Elimination)
+
+Mechanism:
+- Concerted process: C-H and C-X bonds break simultaneously
+- Anti-periplanar geometry required
+- Rate = k[RX][Base⁻]
+
+Stereochemistry:
+- Anti-periplanar arrangement
+- Trans-elimination preferred
+- Stereospecific reaction
+
+Substrate Effects:
+- Primary > Secondary > Tertiary
+- Steric hindrance affects elimination
+- β-hydrogen availability crucial
+
+Base Effects:
+- Stronger bases favor elimination
+- Bulkier bases favor elimination over substitution
+- Base strength vs. nucleophilicity
+
+Leaving Group Effects:
+- Better leaving groups react faster
+- Same order as substitution: I⁻ > Br⁻ > Cl⁻ > F⁻
+- Resonance stabilization important
+
+4.3 E1 Mechanism (Unimolecular Elimination)
+
+Mechanism:
+- Two-step process: slow ionization, fast elimination
+- Carbocation intermediate formation
+- Rate = k[RX] (first-order kinetics)
+
+Stereochemistry:
+- Less stereospecific than E2
+- Carbocation intermediate is planar
+- Multiple elimination pathways possible
+
+Substrate Effects:
+- Tertiary > Secondary > Primary
+- Carbocation stability determines rate
+- Same factors as SN1
+
+Solvent Effects:
+- Polar protic solvents favor E1
+- Solvation of carbocation intermediate
+- Dielectric constant effects
+
+4.4 Competition Between E1 and E2
+
+Factors Affecting Mechanism Choice:
+
+Substrate Structure:
+- Primary: E2 favored
+- Secondary: Both mechanisms possible
+- Tertiary: E1 favored
+
+Base Strength:
+- Strong bases favor E2
+- Weak bases favor E1
+- Base concentration effects
+
+Solvent Effects:
+- Polar protic: favors E1
+- Polar aprotic: favors E2
+- Non-polar: limited solubility
+
+Temperature Effects:
+- Higher temperatures favor E1
+- Entropy effects on transition states
+
+4.5 Competition Between Elimination and Substitution
+
+SN2 vs. E2:
+- Primary substrates: SN2 favored
+- Secondary substrates: competition
+- Base strength and sterics important
+
+SN1 vs. E1:
+- Both involve carbocation intermediate
+- Product distribution determined by elimination vs. substitution
+- Temperature and base effects
+
+4.6 Regioselectivity in Elimination
+
+Zaitsev's Rule:
+- Major product has more substituted double bond
+- Thermodynamic control
+- Stability of alkene product
+
+Hofmann Elimination:
+- Less substituted alkene favored
+- Steric effects of bulky base
+- Kinetic control
+
+4.7 Stereoselectivity
+
+E2 Stereochemistry:
+- Anti-periplanar geometry required
+- Trans-elimination preferred
+- Stereospecific reaction
+
+E1 Stereochemistry:
+- Less stereospecific
+- Multiple elimination pathways
+- Product mixture possible
+
+4.8 Kinetic Analysis
+
+E2 Kinetics:
+- Second-order overall
+- Rate = k[RX][Base⁻]
+- Linear plot of rate vs. concentration
+
+E1 Kinetics:
+- First-order overall
+- Rate = k[RX]
+- Independent of base concentration
+
+4.9 Practical Applications
+
+Synthetic Utility:
+- Alkene synthesis
+- Dehydration reactions
+- Dehydrohalogenation
+
+Industrial Applications:
+- Polymer synthesis
+- Petrochemical industry
+- Pharmaceutical synthesis
+
+Summary:
+Understanding E1 and E2 mechanisms is essential for predicting elimination vs. substitution outcomes and controlling alkene formation. Key factors include substrate structure, base strength, and stereochemical requirements. 
