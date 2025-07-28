@@ -2,30 +2,113 @@
 
 Advanced PDF analysis solution that processes multiple document collections and extracts relevant content based on specific personas and use cases. This system implements a "persona-driven document intelligence" approach for intelligent content extraction and analysis.
 
-## 🚀 Quick Start
+## 💻 Usage
 
-### Prerequisites
+### Command Line Interface
+
+#### List Available Collections
 ```bash
-pip install PyPDF2
+python minimal_analyzer.py --list
 ```
 
-### Run the System
+#### Analyze All Collections
 ```bash
-# List available collections
-python minimal_analyzer.py --list
-
-# Analyze a specific collection
-python minimal_analyzer.py --collection "input/Collection 1"
-
-# Analyze all collections
 python minimal_analyzer.py --all
 ```
 
-### Web Interface (Optional)
+#### Analyze Specific Collection
 ```bash
-pip install fastapi uvicorn
+python minimal_analyzer.py --collection "input/Collection 1"
+```
+
+### Web Interface
+
+1. **Start the server**:
+   ```bash
+   python server.py
+   ```
+
+2. **Open web interface**:
+   - Navigate to `http://localhost:8000` in your browser
+
+3. **Features available**:
+   - Upload PDFs with drag-and-drop
+   - View all collections with status indicators
+   - Run analysis with real-time feedback
+   - View results in a persistent, scrollable interface
+
+### Docker Deployment
+
+#### Option 1: Using Docker Compose 
+```bash
+# Build and start the system
+docker-compose up --build
+
+# Access the web interface at http://localhost:8000
+```
+
+#### Option 2: Using Docker directly
+```bash
+# Build the Docker image
+docker build -t pdf-analysis-system .
+
+# Run the container
+docker run -p 8000:8000 -v $(pwd)/input:/app/input -v $(pwd)/output:/app/output pdf-analysis-system
+
+# Access the web interface at http://localhost:8000
+```
+
+#### Docker Commands
+```bash
+# Stop the system
+docker-compose down
+
+# View logs
+docker-compose logs -f
+
+# Rebuild and restart
+docker-compose up --build --force-recreate
+```
+
+## 🚀 How to Run
+
+### Step 1: Prerequisites
+```bash
+# Install Python 3.8+ if not already installed
+# Then install all required dependencies
+pip install -r requirements.txt
+```
+
+### Step 2: List Available Collections
+```bash
+python minimal_analyzer.py --list
+```
+
+### Step 3: Run Analysis
+
+#### Option A: Analyze All Collections
+```bash
+python minimal_analyzer.py --all
+```
+
+#### Option B: Analyze Specific Collection
+```bash
+python minimal_analyzer.py --collection "input/Collection 1"
+```
+
+### Step 4: Check Results
+After analysis, check the `output/` directory for generated JSON files:
+
+
+### Step 5: Web Interface 
+If you want to use the web interface:
+
+```bash
+# Start the web server
 python server.py
-# Visit http://localhost:8000
+
+# Open your browser and go to:
+# http://localhost:8000
 ```
 
 ## 🎯 Features
@@ -38,6 +121,7 @@ python server.py
 - **CLI Interface**: Command-line tools for batch processing
 - **Production Ready**: Comprehensive error handling, logging, and validation
 - **Web Interface**: Modern, professional UI with drag-and-drop upload
+- **Docker Support**: Containerized deployment for easy scaling
 
 ## 📁 Project Structure
 
@@ -46,6 +130,9 @@ python server.py
 ├── web_interface.html           # Modern web interface
 ├── server.py                    # Web server launcher
 ├── requirements.txt             # Python dependencies
+├── Dockerfile                   # Docker container configuration
+├── docker-compose.yml           # Docker Compose configuration
+├── approach_explanation.md      # Methodology explanation
 ├── src/                         # API and models
 │   ├── api.py                   # FastAPI web service
 │   ├── models.py                # Pydantic data models
@@ -106,59 +193,6 @@ The system has been tested across three diverse domains:
 - **Job**: Identify key concepts and mechanisms for exam preparation on reaction kinetics
 - **Results**: Successfully extracted educational content and learning objectives
 
-## 💻 Usage
-
-### Command Line Interface
-
-#### List Available Collections
-```bash
-python minimal_analyzer.py --list
-```
-
-#### Analyze All Collections
-```bash
-python minimal_analyzer.py --all
-```
-
-#### Analyze Specific Collection
-```bash
-python minimal_analyzer.py --collection "input/Collection 1"
-```
-
-#### Custom Output Directory
-```bash
-python minimal_analyzer.py --collection "input/Collection 1" --output-dir "my_results"
-```
-
-### Web Interface
-
-1. **Start the server**:
-   ```bash
-   python server.py
-   ```
-
-2. **Open web interface**:
-   - Navigate to `http://localhost:8000` in your browser
-   - Use the modern, professional interface with drag-and-drop upload
-
-3. **Features available**:
-   - Upload PDFs with drag-and-drop
-   - View all collections with status indicators
-   - Run analysis with real-time feedback
-   - View results in a persistent, scrollable interface
-   - Clear, professional design with glass morphism effects
-
-### API Endpoints
-
-- `GET /` - Web interface
-- `GET /api` - API information
-- `GET /collections` - List available collections
-- `GET /collection/{name}` - Get collection details
-- `POST /analyze` - Analyze a single collection
-- `POST /analyze-batch` - Analyze multiple collections
-- `POST /upload-pdf` - Upload PDF files
-- `GET /results/{collection_name}` - Get analysis results
-
 ## 📄 Input/Output Format
 
 ### Input JSON Structure
@@ -201,132 +235,5 @@ python minimal_analyzer.py --collection "input/Collection 1" --output-dir "my_re
 }
 ```
 
-## 🔧 Technical Details
-
-### PDF Processing
-- Uses `PyPDF2` for reliable text extraction
-- Handles various PDF formats and structures
-- Extracts text with page numbers for precise location tracking
-
-### Content Analysis
-- **Section Extraction**: Identifies headers and sections using regex patterns
-- **Keyword Matching**: Task-specific keyword extraction and matching
-- **Importance Scoring**: TF-IDF based scoring with length bonuses
-- **Text Refinement**: Intelligent text summarization for analysis
-
-### System Architecture
-- **Modular Design**: Separate components for PDF processing, analysis, and API
-- **Error Handling**: Comprehensive exception handling at all levels
-- **Logging**: Detailed logging with configurable verbosity
-- **Validation**: Input validation using Pydantic models
-
-## 🎨 Web Interface Features
-
-### Modern Design
-- **Glass Morphism**: Semi-transparent cards with backdrop blur
-- **Professional Color Scheme**: Purple gradient background with clean typography
-- **Responsive Layout**: Works on desktop and mobile devices
-- **Smooth Animations**: Hover effects and transitions
-
-### User Experience
-- **Drag-and-Drop Upload**: Easy PDF file upload
-- **Real-time Status**: Live updates during processing
-- **Persistent Results**: Analysis results stay visible
-- **Scrollable Collections**: Prevents page growth with many collections
-- **Tabbed Interface**: Organized content display
-
-## 🚀 Performance
-
-- **Processing Speed**: ~1-2 seconds per PDF page
-- **Memory Usage**: Efficient streaming for large documents
-- **Scalability**: Designed for batch processing of multiple collections
-- **Success Rate**: 100% across all test cases
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-1. **"No module named 'PyPDF2'"**
-   ```bash
-   pip install PyPDF2
-   ```
-
-2. **"PDF file not found"**
-   - Check that PDF files exist in the `PDFs/` directory
-   - Verify file names match those in `challenge1b_input.json`
-
-3. **"No text extracted from PDF"**
-   - Some PDFs might be image-based or password-protected
-   - Check if PDFs are readable in a PDF viewer
-
-4. **Web interface not loading**
-   - Ensure all dependencies are installed: `pip install fastapi uvicorn`
-   - Check if port 8000 is available
-
-### Performance Notes
-- **Processing speed**: ~1-2 seconds per PDF page
-- **Memory usage**: Efficient for most PDF sizes
-- **Output size**: Typically 10-50KB per collection
-
-## 🔄 Adding New Collections
-
-### Option 1: Web Interface (Recommended)
-1. Go to `http://localhost:8000`
-2. Use the "Upload PDFs" section to create collections and upload files
-3. The system will automatically create the proper directory structure
-
-### Option 2: Manual
-1. Create a new directory in `input/`
-2. Add `challenge1b_input.json` with proper structure
-3. Create `PDFs/` subdirectory with PDF files
-4. Run: `python minimal_analyzer.py --collection "input/your_collection_name"`
-
-## 📈 Customization
-
-### Analysis Parameters
-Edit `minimal_analyzer.py` to adjust:
-- Number of extracted sections (default: 10)
-- Number of subsection analyses (default: 5)
-- Text refinement length (default: 500 characters)
-
-### Web Interface Styling
-The web interface uses modern CSS with:
-- Glass morphism effects
-- Professional color schemes
-- Responsive design
-- Smooth animations
-
-## ✅ Success Indicators
-
-When the system is working correctly, you should see:
-
-1. **Collection listing** shows all collections with PDF counts
-2. **Processing output** shows each PDF being processed
-3. **Analysis completion** shows number of sections and analyses found
-4. **Output files** are created in each collection directory
-5. **JSON structure** matches the expected format
-
-## 🎉 Production Ready
-
-The PDF Analysis System is fully functional and ready for production use:
-
-- ✅ **Complete end-to-end workflow** from upload to results
-- ✅ **Multi-domain compatibility** across different content types
-- ✅ **Persona-based processing** for targeted analysis
-- ✅ **Robust error handling** and user experience
-- ✅ **Modern web interface** with professional design
-- ✅ **Comprehensive test coverage** across multiple use cases
-
 **🌐 Access the system at:** `http://localhost:8000`
-
-## 📄 License
-
-This project is part of the Challenge 1b solution for advanced PDF analysis.
-
-## 🆘 Support
-
-For issues and questions:
-1. Check the troubleshooting section above
-2. Run `python minimal_analyzer.py --list` to verify system health
-3. Check console output for detailed error messages
-4. Review the web interface at `http://localhost:8000` for interactive features 
+ 
